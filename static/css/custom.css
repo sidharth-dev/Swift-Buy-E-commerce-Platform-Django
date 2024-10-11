@@ -1,0 +1,47 @@
+html {
+  position: relative;
+  min-height: 100%;
+  width: 100vw;
+}
+
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+  padding-top: 8.4px;
+}
+/* Make navbar fixed at the top */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+.carousel {
+  width: 100%;
+  margin-bottom: 2rem;
+  margin-top: 5px;
+}
+.carousel-item img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+.carousel-caption h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-caption p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  background-color: #0c61ff;
+  color: #fff;
+}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block title %}Contact Us - Swift-Buy{% endblock %}
+{% block content %}
+<div class="container my-5 pt-3">
+  <h1 class="mb-4">Contact Us</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="subject" class="form-label">Subject</label>
+          <input
+            type="text"
+            class="form-control"
+            id="subject"
+            name="subject"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea
+            class="form-control"
+            id="message"
+            name="message"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+    <div class="col-md-6 mt-3s">
+      <h2>Get in Touch</h2>
+      <p>
+        We'd love to hear from you! Whether you have a question about our
+        products, need help with an order, or just want to say hello, don't
+        hesitate to reach out.
+      </p>
+      <h3 class="mt-4">Our Information</h3>
+      <p><strong>Address:</strong> 123 E-commerce Street, Web City, 12345</p>
+      <p><strong>Phone:</strong> (123) 456-7890</p>
+      <p><strong>Email:</strong> support@swift-buy.com</p>
+      <p><strong>Business Hours:</strong> Monday - Friday, 9am - 5pm EST</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

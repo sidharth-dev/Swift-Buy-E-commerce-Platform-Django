@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block title %}{{ product.name }} -
+Swift-Buy{%endblock %} {% block content %}
+<div class="container mt-3 pt-5">
+  <div class="row border-bottom pb-3">
+    <div class="col-md-6">
+      <img
+        src="{{ product.image_url }}"
+        class="img-fluid"
+        alt="{{ product.name }}"
+      />
+    </div>
+    <div class="col-md-6">
+      <h1 class="mb-4">{{ product.name }}</h1>
+      <p style="font-size: 20px">{{ product.description }}</p>
+      <p style="font-size: 20px">In stock: {{ product.stock }}</p>
+      <p style="font-size: 25px">${{ product.price }}</p>
+      <form method="post" action="{% url 'add_to_cart' product.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            value="1"
+            min="1"
+            max="{{ product.stock }}"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <h2 class="my-3">Reviews</h2>
+      {% for review in reviews %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ review.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            By {{ review.user.username }} on {{ review.created_at|date:"F j,Y"}}
+          </h6>
+          <p class="card-text">{{ review.review_text }}</p>
+          <p class="card-text">Rating: {{ review.rating }}/5</p>
+        </div>
+      </div>
+      {% empty %}
+      <p>No reviews yet. Be the first to review this product!</p>
+      {% endfor %}
+    </div>
+
+    <div class="col-md-6">
+      <h2 class="my-3">Write a Review</h2>
+      <form method="post" action="{% url 'create_product_review' product.id %}">
+        {% csrf_token %} {{ form.as_div }}
+        <button type="submit" class="btn btn-primary my-3">
+          Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

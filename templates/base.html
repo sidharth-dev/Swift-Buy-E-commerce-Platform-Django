@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Swift-Buy{% endblock %}</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
+    />
+    <style>
+      /* Flexbox setup to make footer stick to bottom */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow-x: hidden;
+        scrollbar-width: none;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+      }
+
+      /* Hide the default caret icon in the dropdown */
+      .dropdown-toggle-no-caret::after {
+        display: none;
+      }
+    </style>
+    <link href="/static/css/custom.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Swift-Buy</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-start" id="offcanvasNavbar">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Swift-Buy</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'product_list' %}">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle-no-caret"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-person-circle"></i>
+                  <!-- Bootstrap icon -->
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="userDropdown"
+                >
+                  {% if user.is_authenticated %}
+
+                  <li>
+                    <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'my_orders' %}"
+                      >My Orders</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'profile' %}"
+                      >Profile</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'logout' %}"
+                      >Logout</a
+                    >
+                  </li>
+                  {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">
+                      <i class="bi bi-person-circle"></i>
+                      <!-- Bootstrap icon -->
+                      Login
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>{% block content %} {% endblock %}</main>
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Swift-Buy</h5>
+            <p class="text-light">Your one-stop shop for all your needs.</p>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="{% url 'home' %}" class="text-light">Home</a>
+              </li>
+              <li>
+                <a href="{% url 'product_list' %}" class="text-light"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'about_us' %}" class="text-light">About Us</a>
+              </li>
+              <li>
+                <a href="{% url 'contact_us' %}" class="text-light"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <address class="text-light">
+              123 E-commerce Street<br />
+              Web City, 12345<br />
+              <abbr title="Phone">P:</abbr> (123) 456-7890<br />
+              <a href="mailto:support@swift-buy.com" class="text-light"
+                >support@swift-buy.com</a
+              >
+            </address>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-12 text-center">
+            <p class="text-light mb-0">
+              &copy; 2024 Swift-Buy. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
